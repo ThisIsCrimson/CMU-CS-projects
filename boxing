@@ -1,0 +1,88 @@
+# Function defined: 12
+# Function called: 51
+# onMousePress: 49
+# onMouseRelease: 70
+# Property Change 1: 50
+# Property Change 2: 51
+# Property Change 3: 67
+# Property Change 4: 58
+# Property Change 5: 53
+
+# Background
+wall = Rect(0, 0, 400, 400, fill=gradient(rgb(179, 179, 179), 'gray', start='top'))
+pow = Star(200, 200, 300, 9, fill='yellow', visible=False)
+
+# Ring
+Rect(0, 300, 400, 100, fill=gradient(rgb(133, 80, 0), rgb(89, 58, 0), start='top'))
+
+# Sandbag
+bagBottom = Oval(250, 250, 60, 10, fill='red')
+bagBody = Rect(220, 100, 60, 150, fill='red')
+frameTwo = Polygon(267, 139, 241, 202, 298, 219, 328, 138, 266, 58, 218, 97, fill='red', visible=False)
+bagTop = Oval(250, 100, 60, 10, fill='darkRed')
+rope = Line(250, 100, 250, 0)
+
+
+# Boxer
+dynamicArm = Line(172, 140, 180, 184, fill=rgb(235, 215, 174), lineWidth=10)
+dynamicArmTwo = Line(188, 145, 180, 184, fill=rgb(235, 215, 174), lineWidth=10)
+Circle(151, 220, 21, fill='blue')
+Oval(150, 115,40, 50, fill=rgb(255, 235, 194))
+Rect(130, 140, 42, 80, fill=rgb(255, 235, 194))
+Line(130, 140, 140, 184, fill=rgb(235, 215, 174), lineWidth=10)
+Line(140, 184, 150, 145, fill=rgb(235, 215, 174), lineWidth=10)
+Line(146, 248, 135, 297, fill=rgb(255, 235, 194), lineWidth=14)
+Line(174, 252, 165, 297, fill=rgb(255, 235, 194), lineWidth=14)
+Polygon(128, 285, 149, 300, 127, 300, fill=rgb(89, 57, 0))
+Polygon(160, 285, 178, 300, 157, 300, fill=rgb(89, 57, 0))
+Polygon(170, 222, 183, 253, 165, 258, 153, 232, fill='blue')
+Polygon(130, 220, 135, 253, 154, 258, 153, 232, fill='blue')
+
+# Hair
+Polygon(128, 124, 134, 88, 175, 91, 141, 108)
+
+# Gloves
+Circle(150, 145, 10, fill='red')
+dynamicGlove = Circle(188, 145, 10, fill='red')
+
+# Mouse press background change
+def onMousePress(x, y):
+    pow.visible=True
+    wall.fill='orange'
+    dynamicArm.y2 = 144
+    dynamicArm.x2 = 206
+    dynamicArmTwo.y1 = 144
+    dynamicArmTwo.x1 = 206
+    dynamicArmTwo.y2 = 142
+    dynamicArmTwo.x2 = 245
+    dynamicGlove.centerX = 245
+    dynamicGlove.centerY = 142
+    bagTop.centerX = 243
+    bagTop.centerY = 77
+    bagBody.visible = False
+    frameTwo.visible = True
+    bagTop.rotateAngle = 320
+    bagBottom.centerX = 270
+    bagBottom.centerY = 212
+    bagBottom.rotateAngle = 20
+    
+# Mouse release background change
+def onMouseRelease(x, y):
+    pow.visible=False
+    wall.fill=gradient(rgb(179, 179, 179), 'gray', start='top')
+    dynamicArm.y2 = 184
+    dynamicArm.x2 = 180
+    dynamicArmTwo.y1 = 184
+    dynamicArmTwo.x1 = 180
+    dynamicArmTwo.y2 = 145
+    dynamicArmTwo.x2 = 188
+    dynamicGlove.centerX = 188
+    dynamicGlove.centerY = 145
+    bagTop.centerX = 250
+    bagTop.centerY = 100
+    bagBody.visible = True
+    frameTwo.visible = False
+    bagTop.rotateAngle = 0
+    bagBottom.centerX = 250
+    bagBottom.centerY = 250
+    bagBottom.rotateAngle = 0

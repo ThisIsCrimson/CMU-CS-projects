@@ -1,0 +1,86 @@
+Rect(0, 0, 75, 400, fill=rgb(148, 110, 44))
+Rect(325, 0, 75, 400, fill=rgb(148, 110, 44))
+paper = Rect(75, 0, 250, 325, fill = 'white')
+redInk = Rect(75, 325, 83, 75, fill='red')
+greenInk = Rect(158, 325, 84, 75, fill='green')
+blueInk = Rect(242, 325, 83, 75, fill='blue')
+message1 = Label('first stamp the ink, then', 200, 155, size = 15)
+message2 = Label('press space to stamp me!', 200, 175, size = 15)
+writing = Label('you have failed      times!', 200, 20)
+stamp = Rect(150, 175, 100, 50, lineWidth = 5)
+#   4 custom properties
+stamp.color = None
+stamp.down = False
+stamp.number = 1
+stamp.failCount = 0
+failNumber = Label(stamp.failCount, 224, 20)
+
+def onMouseMove(mouseX, mouseY):
+    if(stamp.down == False):
+        stamp.centerX = mouseX
+        stamp.centerY = mouseY
+        
+def onMouseDrag(mouseX, mouseY):
+    if(stamp.down == False):
+        stamp.centerX = mouseX
+        stamp.centerY = mouseY
+
+def stampDown(x, y, color):
+    Rect(x-45, y-20, 90, 40, fill=None, border=color)
+    Label(stamp.number, x, y, size=18, fill=color)
+
+#   OnKeyPress
+def onKeyPress(key):
+    stamp.down = True
+    stamp.width -= 8
+    stamp.height -= 8
+    stamp.centerX += 4
+    stamp.centerY += 4
+    if (key=='space'):
+#   if elif else and Method 1 paper.containsShape(stamp)
+            if (paper.containsShape(stamp) == True):
+                if (stamp.color == None):
+                    message1.visible = False
+                    message2.value = 'No Ink!'
+                    stamp.failCount += 1
+                #   Method 2 stamp.hitsShape(writing)
+                elif(stamp.hitsShape(writing) == True):
+                    message1.visible = False
+                    message2.visible = True
+                    message2.toFront()
+                    message2.value='cannot stamp over writing!'
+                    stamp.failCount += 1
+                else:
+                    stampDown(stamp.centerX, stamp.centerY, stamp.color)
+                    #   Method 3 stamp.toFront()
+                    stamp.toFront()
+                    message1.visible = False
+                    message2.visible = False
+                    stamp.number += 1
+                #   Method 4 redInk.hits(stamp.centerX, stamp.centerY)
+            elif (redInk.hits(stamp.centerX, stamp.centerY) == True):
+                stamp.color = 'red'
+                message1.visible = False
+                message2.visible = False
+            elif (greenInk.hits(stamp.centerX, stamp.centerY) == True):
+                stamp.color = 'green'
+                message1.visible = False
+                message2.visible = False
+            elif (blueInk.hits(stamp.centerX, stamp.centerY) == True):
+                stamp.color = 'blue'
+                message1.visible = False
+                message2.visible = False
+            else:
+                message1.visible = False
+                message2.visible = True
+                message2.toFront()
+                message2.value='cannot stamp table!'
+                stamp.failCount += 1
+#   OnKeyRelease
+def onKeyRelease(key):
+    stamp.down = False
+    stamp.width += 8
+    stamp.height += 8
+    stamp.centerX -= 4
+    stamp.centerY -= 4
+    failNumber.value = stamp.failCount

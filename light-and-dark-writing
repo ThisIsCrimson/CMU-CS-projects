@@ -1,0 +1,40 @@
+Rect(0, 0, 400, 400, fill='white')
+Rect(0, 200, 400, 200, fill='black')
+
+def write(color, x, y):
+    Circle(x, y, 5, fill=color)
+
+pencilShaft = Rect(50, 125, 140, 40, fill='yellow', rotateAngle=35)
+pencilTip = Polygon(75, 89, 51, 121, 37, 84, fill=gradient(rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), 'black', start='right-bottom'))
+hand = Circle(200, 200, 50, fill=rgb(255, 234, 199))
+arm = Rect(200, 170, 400, 60, fill=rgb(255, 234, 199))
+
+def onMouseMove(mouseX, mouseY):
+    hand.centerX = mouseX
+    hand.centerY = mouseY
+    arm.centerX = mouseX + 200
+    arm.centerY = mouseY
+    pencilShaft.centerX = mouseX-80
+    pencilShaft.centerY = mouseY-50
+    pencilTip.centerX = mouseX-143
+    pencilTip.centerY = mouseY-92
+    if (mouseY>309):
+        pencilTip.fill=gradient(rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), 'white', start='right-bottom')
+    else:
+        pencilTip.fill=gradient(rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), 'black', start='right-bottom')
+    
+def onMouseDrag(mouseX, mouseY):
+    hand.centerX = mouseX
+    hand.centerY = mouseY
+    arm.centerX = mouseX + 200
+    arm.centerY = mouseY
+    pencilShaft.centerY = mouseY-50
+    pencilShaft.centerX = mouseX-80
+    pencilTip.centerX = mouseX-143
+    pencilTip.centerY = mouseY-92
+    if (mouseY>309):
+        pencilTip.fill=gradient(rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), 'white', start='right-bottom')
+        write('white', mouseX-163, mouseY-116)
+    else:
+        pencilTip.fill=gradient(rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), rgb(255, 233, 171), 'black', start='right-bottom')
+        write('black', mouseX-165, mouseY-113)

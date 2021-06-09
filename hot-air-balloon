@@ -1,0 +1,23 @@
+# Sky Background
+Rect(0, 0, 400, 400, fill=gradient('black', rgb(22, 42, 77), start='top'))
+# Stars
+Star(80, 80, 6, 4, fill='white')
+Star(20, 220, 6, 4, fill='white')
+Star(260, 20, 6, 4, fill='white')
+Star(300, 280, 6, 4, fill='white')
+# Moon
+Circle(320, 80, 70, fill=rgb(255, 254, 232))
+# Clouds
+Oval(255, 120, 150, 30, fill='gray', opacity=50)
+Oval(360, 90, 150, 30, fill='gray', opacity=50)
+# Basket
+Polygon(90, 300, 190, 300, 180, 340, 100, 340, fill=rgb(128, 72, 0), border='black')
+# Ropes
+Line(90, 300, 40, 180, fill=rgb(84, 48, 0))
+Line(190, 300, 240, 180, fill=rgb(84, 48, 0))
+# Fire Machine
+Rect(120, 240, 40, 20, fill='gray')
+# Balloon
+Circle(140, 140, 110, fill=gradient('red', rgb(215, 0, 0), start='top'), border=rgb(145, 0, 0), borderWidth=4)
+# Brandname
+Label('BalloonCorp', 140, 140, size=30, fill='darkRed')
